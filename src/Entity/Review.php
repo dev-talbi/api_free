@@ -23,16 +23,16 @@ class Review
     private $review;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Users::class, inversedBy="reviews")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $author;
-
-    /**
      * @ORM\ManyToOne(targetEntity=Stories::class, inversedBy="reviews")
      * @ORM\JoinColumn(nullable=false)
      */
     private $story;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="reviews")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $author;
 
     public function getId(): ?int
     {
@@ -51,18 +51,6 @@ class Review
         return $this;
     }
 
-    public function getAuthor(): ?Users
-    {
-        return $this->author;
-    }
-
-    public function setAuthor(?Users $author): self
-    {
-        $this->author = $author;
-
-        return $this;
-    }
-
     public function getStory(): ?Stories
     {
         return $this->story;
@@ -71,6 +59,18 @@ class Review
     public function setStory(?Stories $story): self
     {
         $this->story = $story;
+
+        return $this;
+    }
+
+    public function getAuthor(): ?User
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?User $author): self
+    {
+        $this->author = $author;
 
         return $this;
     }
