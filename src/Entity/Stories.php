@@ -45,10 +45,9 @@ class Stories
     private $reviews;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Users::class, inversedBy="Stories")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="stories")
      */
-    private $author;
+    private $user;
 
     public function __construct()
     {
@@ -138,15 +137,16 @@ class Stories
         return $this;
     }
 
-    public function getAuthor(): ?Users
+    public function getUser(): ?User
     {
-        return $this->author;
+        return $this->user;
     }
 
-    public function setAuthor(?Users $author): self
+    public function setUser(?User $user): self
     {
-        $this->author = $author;
+        $this->user = $user;
 
         return $this;
     }
+
 }
