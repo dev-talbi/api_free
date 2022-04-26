@@ -2,15 +2,25 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @ApiResource(
+ *     normalizationContext={
+ *     "groups"={"user_read"}
+ *     }
+ * )
+ * @ApiFilter(SearchFilter::class, properties={"Firstname":"partial", "Lastname":"partial", "email":"partial"})
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -18,16 +28,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"user_read", "stories_read", "review_read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Groups({"user_read"})
      */
     private $email;
 
     /**
      * @ORM\Column(type="json")
+     * @Groups({"user_read"})
      */
     private $roles = [];
 
@@ -39,26 +52,31 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"user_read", "stories_read", "review_read"})
      */
     private $Firstname;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"user_read", "stories_read", "review_read"})
      */
     private $Lastname;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"user_read"})
      */
     private $Phone;
 
     /**
      * @ORM\OneToMany(targetEntity=Stories::class, mappedBy="user")
+     * @Groups({"user_read"})
      */
     private $stories;
 
     /**
      * @ORM\OneToMany(targetEntity=Review::class, mappedBy="author")
+     * @Groups({"user_read"})
      */
     private $reviews;
 

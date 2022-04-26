@@ -4,9 +4,16 @@ namespace App\Entity;
 
 use App\Repository\ReviewRepository;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=ReviewRepository::class)
+ * @ApiResource(
+ *     normalizationContext={
+ *     "groups"={"review_read"}
+ *     }
+ * )
  */
 class Review
 {
@@ -14,23 +21,27 @@ class Review
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"review_read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="text")
+     * @Groups({"review_read"})
      */
     private $review;
 
     /**
      * @ORM\ManyToOne(targetEntity=Stories::class, inversedBy="reviews")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"review_read"})
      */
     private $story;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="reviews")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"review_read"})
      */
     private $author;
 
