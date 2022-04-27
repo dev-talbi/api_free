@@ -14,6 +14,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
 /**
  * @ORM\Entity(repositoryClass=StoriesRepository::class)
  * @ApiResource(
+ *     collectionOperations={"GET", "POST"},
+ *     itemOperations={"GET", "PUT", "DELETE"},
  *     attributes={
  *     "pagination_enabled"= true,
  *     "order": {"Created_at":"desc"}

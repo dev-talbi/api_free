@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -12,15 +13,20 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ApiResource(
+ *     collectionOperations={"GET", "POST"},
+ *     itemOperations={"GET", "PUT"},
  *     normalizationContext={
  *     "groups"={"user_read"}
  *     }
  * )
  * @ApiFilter(SearchFilter::class, properties={"Firstname":"partial", "Lastname":"partial", "email":"partial"})
+ * @UniqueEntity("email", message="This email already exist")
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -35,6 +41,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      * @Groups({"user_read"})
+     * @Assert\NotBlank(message="User email cannot be null")
+     * @Assert\Email(message="The email '{{ value }}' is not a valid email.")
      */
     private $email;
 
@@ -47,30 +55,66 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Assert\NotBlank(message="User password cannot be null")
+     * @Assert\Regex(
+     *     pattern =  "/^(?=.*\d)(?=.*[A-Z])(?=.*[@#$%])(?!.*(.)\1{2}).*[a-z]/m",
+     *     match=true,
+     *     message="The password must contain minimum eight characters, at least one letter, one number and one special caracter"
+     * )
+     * @Assert\Length(
+     *     min= 8,
+     *     minMessage="The password must contain minimum eight characters, at least one letter, one number, one uppercase and one special caracter"
+     * )
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"user_read", "stories_read", "review_read"})
+     * @Assert\NotBlank(message="User firstname cannot be null")
+     * @Assert\Length(
+     *     min = 2,
+     *     max = 50,
+     *     minMessage="Your first name must be at least {{ limit }} characters long",
+     *     maxMessage="Your first name cannot be longer than {{ limit }} characters"
+     * )
      */
     private $Firstname;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"user_read", "stories_read", "review_read"})
+     * @Assert\Length(
+     *     min = 2,
+     *     max = 50,
+     *     minMessage="Your last name must be at least {{ limit }} characters long",
+     *     maxMessage="Your last name cannot be longer than {{ limit }} characters"
+     * )
      */
     private $Lastname;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups({"user_read"})
+     * @Assert\Length(
+     *     min = 0,
+     *     max= 10,
+     *     minMessage="Please enter a valid phone number",
+     *     maxMessage="Please enter a valid phone number"
+     *
+     * )
+     * @Assert\Regex(
+     *     pattern =  "/^(\s*|\d+)$/",
+     *     match=true,
+     *     message="Please enter a valid phone number"
+     * )
      */
     private $Phone;
 
     /**
      * @ORM\OneToMany(targetEntity=Stories::class, mappedBy="user")
      * @Groups({"user_read"})
+     * @ApiSubresource()
      */
     private $stories;
 
