@@ -34,7 +34,7 @@ class Review
     private $review;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Stories::class, inversedBy="reviews")
+     * @ORM\ManyToOne(targetEntity=Stories::class, inversedBy="reviews" )
      * @ORM\JoinColumn(nullable=false)
      * @Groups({"review_read"})
      */

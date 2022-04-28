@@ -62,13 +62,14 @@ class Stories
     private $Updated_at;
 
     /**
-     * @ORM\OneToMany(targetEntity=Review::class, mappedBy="story")
+     * @ORM\OneToMany(targetEntity=Review::class, mappedBy="story", cascade={"persist", "remove"})
      * @Groups({"stories_read"})
+     *
      */
     private $reviews;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="stories")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="stories", cascade={"persist"} )
      * @Groups({"stories_read"})
      */
     private $user;
