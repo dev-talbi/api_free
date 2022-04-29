@@ -41,6 +41,7 @@ function setup() {
 function isAuthenticated() {
     const token = window.localStorage.getItem("authToken");
 
+    // check if jwt token is not expired and if user is authenticated
     if (token) {
         const jwtData = jwtDecode(token)
         if (jwtData.exp * 1000 > new Date().getTime()) {

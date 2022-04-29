@@ -29,7 +29,8 @@ class Review
 
     /**
      * @ORM\Column(type="text")
-     * @Groups({"review_read"})
+     * @Groups({"review_read", "stories_read"})
+     *
      */
     private $review;
 
@@ -43,7 +44,7 @@ class Review
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="reviews")
      * @ORM\JoinColumn(nullable=false)
-     * @Groups({"review_read"})
+     * @Groups({"review_read", "stories_read"})
      */
     private $author;
 

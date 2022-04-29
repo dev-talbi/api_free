@@ -64,7 +64,6 @@ class Stories
     /**
      * @ORM\OneToMany(targetEntity=Review::class, mappedBy="story", cascade={"persist", "remove"})
      * @Groups({"stories_read"})
-     *
      */
     private $reviews;
 
