@@ -19,7 +19,7 @@ const Feed = () => {
                 <div className={"card-body"}>
                     <div className={"mb-5"}>
                         Publier par : {stories.user.Firstname} le : {'\u00A0'}
-                        {new Date(stories.Created_at).toLocaleDateString("fr", {hour: 'numeric', minute: 'numeric'})}h
+                        {new Date(stories.Created_at).toLocaleDateString("fr")}
                     </div>
                     <div className={"d-flex justify-center"}>
                         <img className="mx-auto" src="http://placehold.jp/400x400.png" alt="Card image cap"/>
