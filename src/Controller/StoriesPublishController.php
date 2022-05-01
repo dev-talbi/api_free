@@ -22,7 +22,6 @@ class StoriesPublishController
         } catch (\Exception $e) {
             dd($e);
         }
-
     }
 
 }

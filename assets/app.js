@@ -4,13 +4,13 @@ import './styles/app.css';
 import {HashRouter, Switch, Route, withRouter} from "react-router-dom";
 import './bootstrap';
 import Navbar from "./js/components/Navbar";
-import Home from "./js/pages/Home";
 import Login from "./js/pages/Login";
 import Feed from "./js/pages/Feed";
 import AuthApi from "./js/services/AuthApi";
 import AuthContext from "./js/contexts/AuthContext";
 import PrivateRoute from "./js/components/PrivateRoute";
 import Register from "./js/pages/Register";
+import AddStory from "./js/pages/AddStory"
 
 AuthApi.setup();
 
@@ -33,7 +33,8 @@ const App = () => {
                         <Route path={"/login"} component={Login}/>
                         <Route path={"/register"} component={Register}/>
                         <PrivateRoute path={"/feed"} component={Feed}/>
-                        <PrivateRoute path={"/"} component={Home}/>
+                        <PrivateRoute path={"/add/story/:id"} component={AddStory}/>
+                        <PrivateRoute path={"/"} component={Feed}/>
                     </Switch>
                 </div>
             </HashRouter>
