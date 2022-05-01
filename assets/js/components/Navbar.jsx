@@ -32,7 +32,7 @@ const Navbar = ({history}) => {
                     <ul className={"navbar-nav ml-auto"}>
                         {(!isAuthenticated && (<>
                             <li className={"nav-item mx-auto"}>
-                                <NavLink to={"/register"} className={"btn btn-info"}>
+                                <NavLink to={"/register"} className={"btn btn-info mr-3"}>
                                     Inscription
                                 </NavLink>
                             </li>

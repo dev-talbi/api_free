@@ -2,15 +2,16 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
+use App\Controller\StoriesPublishController;
 use App\Repository\StoriesRepository;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use ApiPlatform\Core\Annotation\ApiResource;
-use ApiPlatform\Core\Annotation\ApiFilter;
-use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
 use Symfony\Component\Serializer\Annotation\Groups;
-use App\Controller\StoriesPublishController;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -122,24 +123,24 @@ class Stories
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function getCreatedAt(): ?DateTimeInterface
     {
         return $this->Created_at;
     }
 
-    public function setCreatedAt(?\DateTimeInterface $Created_at): self
+    public function setCreatedAt(?DateTimeInterface $Created_at): self
     {
         $this->Created_at = $Created_at;
 
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeInterface
+    public function getUpdatedAt(): ?DateTimeInterface
     {
         return $this->Updated_at;
     }
 
-    public function setUpdatedAt(?\DateTimeInterface $Updated_at): self
+    public function setUpdatedAt(?DateTimeInterface $Updated_at): self
     {
         $this->Updated_at = $Updated_at;
 
