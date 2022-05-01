@@ -22,9 +22,9 @@ class AppFixtures extends Fixture
     public function __construct(UserPasswordEncoderInterface $encoder)
     {
         $this->encoder = $encoder;
-
     }
 
+    // Create 12 user, between 6 and 12 stories, and between 2 and 3 review for one story
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create('fr_FR');
@@ -39,7 +39,6 @@ class AppFixtures extends Fixture
                 ->setPhone($faker->phoneNumber)
                 ->setPassword($hash);
             $manager->persist($user);
-
         }
 
         for ($i = 0; $i < mt_rand(6, 12); $i++) {
@@ -56,9 +55,7 @@ class AppFixtures extends Fixture
                     ->setStory($story)
                     ->setAuthor($user);
                 $manager->persist($review);
-
             }
-
         }
 
         $manager->flush();

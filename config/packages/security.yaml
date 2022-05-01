@@ -40,7 +40,8 @@ security:
             lazy: true
             provider: app_user_provider
 
-    # require jwt token for access and authorize access post to users for register
+    # require jwt token for access and authorize access post to users for register.
+    # Give to /login a public access.
     access_control:
         - { path: ^/api/login, roles: PUBLIC_ACCESS }
         - { path: ^/api/users, roles: IS_AUTHENTICATED_FULLY, methods: [GET, PUT, DELETE] }

@@ -3,7 +3,7 @@ import AuthApi from "../services/AuthApi";
 import AuthContext from "../contexts/AuthContext";
 import {NavLink} from "react-router-dom";
 
-const Login = ({ history}) => {
+const Login = ({history}) => {
     const {setIsAuthenticated} = useContext(AuthContext);
     const [credentials, setCredentials] = useState({
         username: "",

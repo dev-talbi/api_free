@@ -1,6 +1,6 @@
 a {
     color: #eb6863;
-    display:inline-block;
+    display: inline-block;
     text-decoration: none;
     font-weight: 400;
 }
@@ -10,7 +10,7 @@ h2 {
     font-size: 16px;
     font-weight: 600;
     text-transform: uppercase;
-    display:inline-block;
+    display: inline-block;
     margin: 40px 8px 10px 8px;
     color: #cccccc;
 }
@@ -36,8 +36,8 @@ h2 {
     max-width: 450px;
     position: relative;
     padding: 0px;
-    -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
-    box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+    -webkit-box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
     text-align: center;
 }
 
@@ -49,7 +49,6 @@ h2 {
     -webkit-border-radius: 0 0 10px 10px;
     border-radius: 0 0 10px 10px;
 }
-
 
 
 /* TABS */
@@ -75,8 +74,8 @@ h2.active {
     display: inline-block;
     text-transform: uppercase;
     font-size: 13px;
-    -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
-    box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+    -webkit-box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+    box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
     -webkit-border-radius: 5px 5px 5px 5px;
     border-radius: 5px 5px 5px 5px;
     margin: 5px 20px 40px 20px;
@@ -87,11 +86,11 @@ h2.active {
     transition: all 0.3s ease-in-out;
 }
 
-.login:hover  {
+.login:hover {
     background-color: #f5827a;
 }
 
-.login  {
+.login {
     -moz-transform: scale(0.95);
     -webkit-transform: scale(0.95);
     -o-transform: scale(0.95);
@@ -246,23 +245,46 @@ input[type=text]:placeholder {
 }
 
 /* Simple CSS3 Fade-in Animation */
-@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@-webkit-keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
 
 .fadeIn {
-    opacity:0;
-    -webkit-animation:fadeIn ease-in 1;
-    -moz-animation:fadeIn ease-in 1;
-    animation:fadeIn ease-in 1;
+    opacity: 0;
+    -webkit-animation: fadeIn ease-in 1;
+    -moz-animation: fadeIn ease-in 1;
+    animation: fadeIn ease-in 1;
 
-    -webkit-animation-fill-mode:forwards;
-    -moz-animation-fill-mode:forwards;
-    animation-fill-mode:forwards;
+    -webkit-animation-fill-mode: forwards;
+    -moz-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
 
-    -webkit-animation-duration:1s;
-    -moz-animation-duration:1s;
-    animation-duration:1s;
+    -webkit-animation-duration: 1s;
+    -moz-animation-duration: 1s;
+    animation-duration: 1s;
 }
 
 .fadeIn.first {
@@ -305,7 +327,7 @@ input[type=text]:placeholder {
     color: #0d0d0d;
 }
 
-.underlineHover:hover:after{
+.underlineHover:hover:after {
     width: 100%;
 }
 
@@ -316,10 +338,10 @@ input[type=text]:placeholder {
 }
 
 #icon {
-    width:60%;
+    width: 60%;
 }
 
-#container_register{
+#container_register {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -327,11 +349,11 @@ input[type=text]:placeholder {
 }
 
 
-.green-alert{
+.green-alert {
     display: none;
 }
 
-.input-register{
+.input-register {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -339,17 +361,18 @@ input[type=text]:placeholder {
 
 }
 
-.width-100{
+.width-100 {
     width: 100%;
 }
-.mw-400{
+
+.mw-400 {
     max-width: 400px;
 }
 
-.ml-auto{
+.ml-auto {
     margin-left: auto;
 }
 
-.mr-3{
+.mr-3 {
     margin-right: 15px;
 }
