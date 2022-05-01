@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import Axios from "axios";
 import jwtDecode from "jwt-decode";
 
@@ -21,12 +21,12 @@ const AddStory = ({history, match}) => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const url = "https://localhost:8000/api/stories/"+id
+        const url = "https://localhost:8000/api/stories/" + id
         try {
-            if (editing){
-                const response = await Axios.put("https://localhost:8000/api/stories/"+id, story);
-                document.querySelector(".green-alert").style.display="block";
-            }else {
+            if (editing) {
+                const response = await Axios.put("https://localhost:8000/api/stories/" + id, story);
+                document.querySelector(".green-alert").style.display = "block";
+            } else {
                 const response = await Axios.post("https://localhost:8000/api/post-story", story);
                 history.replace('/feed')
             }
@@ -41,8 +41,8 @@ const AddStory = ({history, match}) => {
         try {
             const data = await Axios.get("https://localhost:8000/api/stories/" + id)
                 .then(response => response.data)
-            const {story, picture, user } = data
-            setStory({story, picture, user: "api/users/"+user.id});
+            const {story, picture, user} = data
+            setStory({story, picture, user: "api/users/" + user.id});
             console.log(story)
 
         } catch (error) {

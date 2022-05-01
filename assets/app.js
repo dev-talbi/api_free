@@ -1,7 +1,7 @@
-import React, { useState} from "react";
+import React, {useState} from "react";
 import ReactDom from "react-dom"
 import './styles/app.css';
-import {HashRouter, Switch, Route, withRouter} from "react-router-dom";
+import {HashRouter, Route, Switch, withRouter} from "react-router-dom";
 import './bootstrap';
 import Navbar from "./js/components/Navbar";
 import Login from "./js/pages/Login";
@@ -15,7 +15,6 @@ import AddStory from "./js/pages/AddStory"
 AuthApi.setup();
 
 
-
 const App = () => {
 
     const [isAuthenticated, setIsAuthenticated] = useState(AuthApi.isAuthenticated());
@@ -23,7 +22,7 @@ const App = () => {
 
     return (
         <AuthContext.Provider value={{
-            isAuthenticated ,
+            isAuthenticated,
             setIsAuthenticated
         }}>
             <HashRouter>

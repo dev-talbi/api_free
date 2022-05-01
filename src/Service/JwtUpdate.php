@@ -9,7 +9,7 @@ use Lexik\Bundle\JWTAuthenticationBundle\Event\JWTCreatedEvent;
 
 class JwtUpdate
 {
-    // function called in "services.yaml"
+    // Function called in "services.yaml, Add firstname, lastname, phone and user id in the token"
     public function updateJwtToken(JWTCreatedEvent $event)
     {
         /** @var User $user */
@@ -22,8 +22,6 @@ class JwtUpdate
         $data['phone'] = $user->getPhone();
         $data['id'] = $user->getId();
         $event->setData($data);
-
-
     }
 
 }
