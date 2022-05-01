@@ -28,6 +28,7 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create('fr_FR');
+        $user = "";
 
         for ($u = 0; $u < 12; $u++) {
             $user = new User();
@@ -39,22 +40,25 @@ class AppFixtures extends Fixture
                 ->setPassword($hash);
             $manager->persist($user);
 
-            for ($i = 0; $i < mt_rand(6, 12); $i++) {
-                $story = new Stories();
-                $story->setStory($faker->text)
-                    ->setUser($user)
-                    ->setCreatedAt($faker->dateTimeBetween('-7 months'));
-                $manager->persist($story);
+        }
 
-                for ($r = 0; $r < mt_rand(4, 6); $r++) {
-                    $review = new Review();
-                    $review->setReview($faker->text)
-                        ->setStory($story)
-                        ->setAuthor($user);
-                    $manager->persist($review);
+        for ($i = 0; $i < mt_rand(6, 12); $i++) {
+            $story = new Stories();
+            $story->setStory($faker->text)
+                ->setUser($user)
+                ->setPicture($faker->imageUrl(400, 400, 'animals', true, 'cat'))
+                ->setCreatedAt($faker->dateTimeBetween('-7 months'));
+            $manager->persist($story);
 
-                }
+            for ($r = 0; $r < mt_rand(2, 3); $r++) {
+                $review = new Review();
+                $review->setReview($faker->text)
+                    ->setStory($story)
+                    ->setAuthor($user);
+                $manager->persist($review);
+
             }
+
         }
 
         $manager->flush();

@@ -10,12 +10,26 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
 use Symfony\Component\Serializer\Annotation\Groups;
+use App\Controller\StoriesPublishController;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=StoriesRepository::class)
  * @ApiResource(
- *     collectionOperations={"GET", "POST"},
- *     itemOperations={"GET", "PUT", "DELETE"},
+ *     collectionOperations={
+ *     "GET",
+ *     "POST",
+ *     "post_created_at" = {
+ *          "method" : "POST",
+ *          "path" : "/post-story",
+ *          "controller" : StoriesPublishController::class,
+ *     }
+ *     },
+ *     itemOperations = {
+ *     "GET",
+ *     "PUT",
+ *     "DELETE",
+ * },
  *     attributes={
  *     "pagination_enabled"= true,
  *     "order": {"Created_at":"desc"}
@@ -40,6 +54,7 @@ class Stories
     /**
      * @ORM\Column(type="text")
      * @Groups({"stories_read"})
+     * @Assert\NotBlank(message="Story cannot be null")
      */
     private $story;
 
@@ -64,7 +79,6 @@ class Stories
     /**
      * @ORM\OneToMany(targetEntity=Review::class, mappedBy="story", cascade={"persist", "remove"})
      * @Groups({"stories_read"})
-     *
      */
     private $reviews;
 

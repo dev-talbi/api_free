@@ -23,13 +23,14 @@ class Review
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups({"review_read"})
+     * @Groups({"review_read","stories_read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="text")
-     * @Groups({"review_read"})
+     * @Groups({"review_read", "stories_read"})
+     *
      */
     private $review;
 
@@ -43,7 +44,7 @@ class Review
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="reviews")
      * @ORM\JoinColumn(nullable=false)
-     * @Groups({"review_read"})
+     * @Groups({"review_read", "stories_read"})
      */
     private $author;
 
