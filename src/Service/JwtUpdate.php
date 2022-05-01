@@ -20,10 +20,9 @@ class JwtUpdate
         $data['firstname'] = $user->getFirstname();
         $data['lastname'] = $user->getLastname();
         $data['phone'] = $user->getPhone();
+        $data['id'] = $user->getId();
         $event->setData($data);
 
-        // I have comment this dump for you, you can try to login for check the result.
-        // dd($event->getData());
 
     }
 

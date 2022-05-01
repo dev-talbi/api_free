@@ -11,6 +11,7 @@ use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
 use Symfony\Component\Serializer\Annotation\Groups;
 use App\Controller\StoriesPublishController;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=StoriesRepository::class)
@@ -53,6 +54,7 @@ class Stories
     /**
      * @ORM\Column(type="text")
      * @Groups({"stories_read"})
+     * @Assert\NotBlank(message="Story cannot be null")
      */
     private $story;
 

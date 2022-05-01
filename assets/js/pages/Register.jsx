@@ -19,26 +19,23 @@ const Register = () => {
 
     const handleChange = ({currentTarget}) => {
         const {name, value} = currentTarget;
-        setRegister({... register, [name]: value})
+        setRegister({...register, [name]: value})
     }
-
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
             const response = await Axios.post("https://localhost:8000/api/users", register)
+            document.querySelector(".green-alert").style.display = "block";
 
-            document.querySelector(".green-alert").style.display="block"
-
-        }catch (error){
-            if(error.response.data.violations){
+        } catch (error) {
+            if (error.response.data.violations) {
                 const apiErrors = {};
                 error.response.data.violations.forEach(violation => {
                     apiErrors[violation.propertyPath] = violation.message;
-                } );
+                });
                 setErrors(apiErrors);
             }
-
         }
     }
 
@@ -48,7 +45,6 @@ const Register = () => {
                 Inscription réussie
             </div>
             <div className="row">
-
                 <div className="">
                     <legend className="text-center mb-5">Inscription</legend>
                     <form onSubmit={handleSubmit} role="form" method="POST" action="#">
@@ -94,7 +90,6 @@ const Register = () => {
 
             </div>
         </div>
-
     )
 }
 
