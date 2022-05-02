@@ -27,7 +27,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *          "openapi_context"={
  *     "summary" = "set creation_date",
  *     "description" = "Set creation_date and set story data when you post a story"
- *     }
+ *          }
  *     },
  *     },
  *     itemOperations = {

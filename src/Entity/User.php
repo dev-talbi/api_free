@@ -19,7 +19,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ApiResource(
- *     collectionOperations={"GET", "POST"},
+ *     collectionOperations={
+ *     "GET",
+ *     "POST",
+ *     },
  *     itemOperations={"GET", "PUT"},
  *     normalizationContext={
  *     "groups"={"user_read"}
