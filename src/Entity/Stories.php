@@ -24,13 +24,17 @@ use Symfony\Component\Validator\Constraints as Assert;
  *          "method" : "POST",
  *          "path" : "/post-story",
  *          "controller" : StoriesPublishController::class,
+ *          "openapi_context"={
+ *     "summary" = "set creation_date",
+ *     "description" = "Set creation_date and set story data when you post a story"
  *     }
+ *     },
  *     },
  *     itemOperations = {
  *     "GET",
  *     "PUT",
  *     "DELETE",
- * },
+ *      },
  *     attributes={
  *     "pagination_enabled"= true,
  *     "order": {"Created_at":"desc"}
